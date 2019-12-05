@@ -68,6 +68,9 @@
 				          <li><a href="packages.php">Packages</a></li>
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
+						  <li><a href="tourist.php">Tourist Attraction</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
+                          <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
 				</div>
@@ -201,19 +204,19 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="single-price">
-							<h4>Aboard Packages</h4>
+							<h4>Tourist Attraction</h4>
 							<ul class="price-list">
 								<li class="d-flex justify-content-between align-items-center">
-									<span>Singapore</span>
-									<a href="booking.php" class="price-btn">IDR 15,120,-</a>
+									<span>Candi Prambanan</span>
+									<a href="booking.php" class="price-btn">IDR 25,-</a>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
-									<span>Malaysia</span>
-									<a href="booking.php" class="price-btn">IDR 4,920,-</a>
+									<span>Candi Borobudur</span>
+									<a href="booking.php" class="price-btn">IDR 25,-</a>
 								</li>
 								<li class="d-flex justify-content-between align-items-center">
-									<span>Australia</span>
-									<a href="booking.php" class="price-btn">IDR 6,180,-</a>
+									<span>Pantai Pandawa</span>
+									<a href="booking.php" class="price-btn">IDR 20,-</a>
 								</li>														
 							</ul>
 						</div>

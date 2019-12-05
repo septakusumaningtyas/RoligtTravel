@@ -1,3 +1,6 @@
+<?php
+    include '../helper/connection.php';
+?>
 <html>
     <head>
         <title>Roligt Travel</title>
@@ -69,7 +72,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-						  <li><a href="hotel.php">Hotel</a></li>
+                          <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -83,109 +86,97 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							About Us				
+							Tourist Attraction				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="about.php"> About Us</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php">Tourist Attraction</a></p>
 				        </div>	
 				    </div>
 			    </div>
 		</section>
 		<!-- End banner Area -->
 		<!-- Start about-info Area -->
-		<section class="about-info-area section-gap">
+		<section class="book-info-area section-gap">
 			<div class="container">
+                <h2 class="judul-book">Fill this form to booked the tourist attraction</h2>
 				<div class="row align-items-center">
-					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/mountain.jpg" alt="">
+					<div class="col-lg-6 col-md-4 banner-right">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
+								<form class="form-wrap" action="booked.php" method="POST" enctype="multipart/form-data">
+									<p>PERSONAL DATA</p>
+									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+									<label for="Packages">Packages Code</label>
+									<select name="kode_pkt" id="kode_pkt" class="form-control">
+                                        <?php
+                                            $paket = mysqli_query($con,"select * from tb_packages");
+                                            while($data2 = mysqli_fetch_array($paket))
+                                            {
+                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
+                                            }
+                                        ?>
+                                    </select>
+									<p>HOTELS</p>
+									<label class="text-align left" for="to">To</label>
+									<select name="to" id="to" class="form-control" required>
+                                        <?php
+                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
+                                            while($data = mysqli_fetch_array($tujuan))
+                                            {
+                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
+                                            }
+                                        ?>
+                                    </select>	
+									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="Room " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
+									<label for="arrival">Arrival Date</label>
+									<input type="date" class="form-control" name="arrival" data-date-format="DD/MM/YYY" required placeholder="Arrival " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
+									<label for="leave">Leave Date</label>
+									<input type="date" class="form-control" name="leave" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
+									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
+									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
+									<p>FLIGHTS</p>
+									<label class="text-align left" for="dari">From - To</label>
+									<select name="from" id="from" class="form-control">
+                                        <?php
+                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
+                                            while($data = mysqli_fetch_array($tujuan))
+                                            {
+                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
+                                            }
+                                        ?>
+                                    </select>
+									<select name="ke" id="ke" class="form-control">
+                                        <?php
+                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
+                                            while($data = mysqli_fetch_array($tujuan))
+                                            {
+                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
+                                            }
+                                        ?>
+                                    </select>
+									<input type="date" class="form-control" name="departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
+									<input type="date" class="form-control" name="return"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<p>Children under 5 year old didn't count</p>
+									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
+									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
+									<p>Please check your data before you submited it</p>
+								</form>
+							</div>
+						</div>
 					</div>
-					<div class="col-lg-6 info-right">
-						<h6>About Us</h6>
-						<h1>Who We Are?</h1>
-						<p>
-                            Here, we focus on a travel business where we can make our customers feel comfortable with our services and can make our customers feel happy by choosing our travel agent. Based on the name of our travel agent Roligt Travel, where the word "Roligt" is taken from Swedish language which means happy or pleasant. So we prioritize the happy and pleasant feelings that our customers get.
-						</p>
+					<div class="col-lg-6 info-left">
+						<img class="img-fluid" src="../img/booking.jpg" alt="">
 					</div>
 				</div>
 			</div>	
 		</section>
 		<!-- End about-info Area -->
-		<!-- Start price Area -->
-		<section class="price-area section-gap">
-			<div class="container">
-		        <div class="row d-flex justify-content-center">
-		            <div class="menu-content pb-70 col-lg-8">
-		                <div class="title text-center">
-		                    <h1 class="mb-10">We Provide Affordable Prices</h1>
-		                    <p>We provide travel package prices according to customer convenience</p>
-		                </div>
-		            </div>
-		        </div>						
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="single-price">
-							<h4>Cheap Packages</h4>
-							<ul class="price-list">
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Jakarta</span>
-									<a href="booking.php" class="price-btn">IDR 1,976,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Surabaya</span>
-									<a href="booking.php" class="price-btn">IDR 1,192,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Malang</span>
-									<a href="booking.php" class="price-btn">IDR 1,158,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Bandung</span>
-									<a href="booking.php" class="price-btn">IDR 1,741,-</a>
-								</li>													
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="single-price">
-							<h4>Popular Packages</h4>
-							<ul class="price-list">
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Bali</span>
-									<a href="booking.php" class="price-btn">IDR 2,500,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Lombok</span>
-									<a href="booking.php" class="price-btn">IDR 2,665,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Yogyakarta</span>
-									<a href="booking.php" class="price-btn">IDR 3,400,-</a>
-								</li>													
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="single-price">
-							<h4>Aboard Packages</h4>
-							<ul class="price-list">
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Singapore</span>
-									<a href="booking.php" class="price-btn">IDR 15,120,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Malaysia</span>
-									<a href="booking.php" class="price-btn">IDR 4,920,-</a>
-								</li>
-								<li class="d-flex justify-content-between align-items-center">
-									<span>Australia</span>
-									<a href="booking.php" class="price-btn">IDR 6,180,-</a>
-								</li>														
-							</ul>
-						</div>
-					</div>												
-				</div>
-			</div>	
-		</section>
-        <!-- End price Area -->
         <!-- start footer Area -->		
 		<footer class="footer-area section-gap">
 			<div class="container">
@@ -214,7 +205,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>
+					</div>	
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -243,7 +234,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>
+					</div>						
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

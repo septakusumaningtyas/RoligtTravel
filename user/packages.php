@@ -68,6 +68,9 @@
 				          <li><a href="packages.php">Packages</a></li>
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
+						  <li><a href="tourist.php">Tourist Attraction</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
+                          <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
 				</div>
@@ -166,114 +169,6 @@
 		                </div>
 		            </div>						
 					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d1.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4>Holiday in Singapore</h4>
-									<p>
-										Singapore
-									</p>
-									<p>Packages Code : A001</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Duration</span>
-											<span>07 days and 6 nights</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Hotel</span>
-											<span>Carlton Hotel Singapore</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Airline</span>
-											<span>Sriwijaya Airline</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Extras</span>
-											<span>All Inclusive</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per person</span>
-											<a href="booking.php" class="price-btn">IDR 15,120,-</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d2.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4>Holiday in Malaysia</h4>
-									<p>
-										Malaysia
-									</p>
-									<p>Packages Code : A002</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Duration</span>
-											<span>07 days and 6 nights</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Hotel</span>
-											<span>Hotel Seri Malaysia Port Dickson</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Airline</span>
-											<span>Garuda Airline</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Extras</span>
-											<span>All Inclusive</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per person</span>
-											<a href="booking.php" class="price-btn">IDR 4,920,-</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d3.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4>Holiday in Australia</h4>
-									<p>
-										Australia
-									</p>
-									<p>Packages Code : A003</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Duration</span>
-											<span>07 days and 6 nights</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Hotel</span>
-											<span>Australia Hotel</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Airline</span>
-											<span>Garuda Airline</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Extras</span>
-											<span>All Inclusive</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per person</span>
-											<a href="booking.php" class="price-btn">IDR 6,180,-</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
 						<div class="col-lg-4">
 							<div class="single-destinations">
 								<div class="thumb">
@@ -530,6 +425,260 @@
 				</div>
 		    </section>
 		<!-- End destinations Area -->
+
+		<!-- Start tourist attraction Area -->
+		<section class="destinations-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-40 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Tourist Attraction</h1>
+		                        <p>Henry Miller - "One's destination is never a place, but a new way of seeing things."</p>
+		                    </div>
+		                </div>
+		            </div>						
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/d4.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Candi Prambanan</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Code : H001</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>01 day</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="tourist.php" class="price-btn">IDR 25,-</a>
+										</li>													
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/d5.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Candi Borobudur</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Code : H002</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>01 day</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="tourist.php" class="price-btn">IDR 25,-</a>
+										</li>													
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/d6.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Malang</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : H003</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>03 days and 2 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>Swiss - Belinn Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Citilink Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 1,158,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+                        </div>
+                        <div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/d7.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Bandung</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : H004</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>03 days and 2 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>Ibis Trans Studio Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Lion Air</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 1,741,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+                        </div>
+                        <div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/kuta.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Bali</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : P001</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>05 days and 4 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>HARRIS Hotel & Conventions Denpasar</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Garuda Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 2,500,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+                        </div>
+                        <div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/Pink-Beach-Lombok.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Lombok</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : P002</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>05 days and 4 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>Lombok Garden Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Lion Air</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 2,665,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+                        </div>
+                        <div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/Candi-borobudur.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Yogyakarta</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : P003</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>05 days and 4 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>Hotel Ibis Malioboro</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Sriwijaya Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 3,400,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+						</div>
+					</div>																														
+				</div>
+		    </section>
+		<!-- End tourist attraction Area -->
+
         <!-- start footer Area -->		
 		<footer class="footer-area section-gap">
 			<div class="container">

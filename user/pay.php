@@ -71,6 +71,9 @@
 				          <li><a href="packages.php">Packages</a></li>
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
+						  <li><a href="tourist.php">Tourist Attraction</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
+                          <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
 				</div>
