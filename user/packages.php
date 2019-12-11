@@ -108,13 +108,13 @@
 							<div class="single-carusel">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="../img/kuta.jpg" alt="">
+									<img src="../img/nusapenida.jpg" alt="" width="200" height="400">
 								</div>
 								<div class="price-detials">
 									<a href="booking.php" class="price-btn">Starting From <span>IDR 2,500,-</span></a>
 								</div>
 								<div class="details">
-									<h4 class="text-white">Kuta Beach</h4>
+									<h4 class="text-white">Nusa Penida</h4>
 									<p class="text-white">
 										Bali, Indonesia
 									</p>
@@ -123,7 +123,7 @@
 							<div class="single-carusel">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="../img/Candi-borobudur.jpg" alt="">
+									<img src="../img/borobudur.jpg" alt="" width="200" height="400">
 								</div>
 								<div class="price-detials">
 									<a href="booking.php" class="price-btn">Starting From <span>IDR 3,400,-</span></a>
@@ -138,7 +138,7 @@
 							<div class="single-carusel">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="../img/Pink-Beach-Lombok.jpg" alt="">
+									<img src="../img/Pink-Beach-Lombok.jpg" alt="" width="200" height="400">
 								</div>
 								<div class="price-detials">
 									<a href="booking.php" class="price-btn">Starting From <span>IDR 2,665,-</span></a>
@@ -171,8 +171,8 @@
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d4.jpg" alt="">
+								<div class="">
+									<img src="../img/d4.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Holiday in Jakarta</h4>
@@ -279,8 +279,8 @@
                         </div>
                         <div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d7.jpg" alt="">
+								<div class="">
+									<img src="../img/d7.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Holiday in Bandung</h4>
@@ -316,7 +316,7 @@
                         <div class="col-lg-4">
 							<div class="single-destinations">
 								<div class="thumb">
-									<img src="../img/kuta.jpg" alt="">
+									<img src="../img/nusapenida.jpg" alt="">
 								</div>
 								<div class="details">
 									<h4>Holiday in Bali</h4>
@@ -387,8 +387,8 @@
                         </div>
                         <div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/Candi-borobudur.jpg" alt="">
+								<div class="">
+									<img src="../img/Candi-borobudur.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Holiday in Yogyakarta</h4>
@@ -408,6 +408,78 @@
 										<li class="d-flex justify-content-between align-items-center">
 											<span>Airline</span>
 											<span>Sriwijaya Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 3,400,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/pantai-losari.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Makassar</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : P003</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>03 days and 4 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>Pessona Makassar Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Batik Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Extras</span>
+											<span>All Inclusive</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Price per person</span>
+											<a href="booking.php" class="price-btn">IDR 3,400,-</a>
+										</li>													
+                                    </ul>
+                                </div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-destinations">
+								<div class="thumb">
+									<img src="../img/ampera.jpg" alt="">
+								</div>
+								<div class="details">
+									<h4>Holiday in Palembang</h4>
+									<p>
+										Indonesia
+									</p>
+									<p>Packages Code : P003</p>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Duration</span>
+											<span>02 days and 5 nights</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>favehotel Palembang</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>LionAir Airline</span>
 										</li>
 										<li class="d-flex justify-content-between align-items-center">
 											<span>Extras</span>
@@ -440,8 +512,8 @@
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d4.jpg" alt="">
+								<div class="">
+									<img src="../img/Candi-borobudur.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Candi Prambanan</h4>
@@ -455,6 +527,14 @@
 											<span>01 day</span>
 										</li>
 										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>The Edelweiss Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Citilink Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
 											<span>Extras</span>
 											<span>All Inclusive</span>
 										</li>
@@ -469,7 +549,7 @@
 						<div class="col-lg-4">
 							<div class="single-destinations">
 								<div class="thumb">
-									<img src="../img/d5.jpg" alt="">
+									<img src="../img/borobudur.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Candi Borobudur</h4>
@@ -483,6 +563,14 @@
 											<span>01 day</span>
 										</li>
 										<li class="d-flex justify-content-between align-items-center">
+											<span>Hotel</span>
+											<span>The Edelweiss Hotel</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Airline</span>
+											<span>Citilink Airline</span>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
 											<span>Extras</span>
 											<span>All Inclusive</span>
 										</li>
@@ -496,11 +584,11 @@
 						</div>
 						<div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d6.jpg" alt="">
+								<div class="">
+									<img src="../img/sempu.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
-									<h4>Holiday in Malang</h4>
+									<h4>Pantai Sempu</h4>
 									<p>
 										Indonesia
 									</p>
@@ -532,8 +620,8 @@
                         </div>
                         <div class="col-lg-4">
 							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/d7.jpg" alt="">
+								<div class="">
+									<img src="../img/d7.jpg" alt="" width="350px" height="200px">
 								</div>
 								<div class="details">
 									<h4>Holiday in Bandung</h4>
@@ -638,42 +726,6 @@
                                 </div>
 							</div>
                         </div>
-                        <div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="../img/Candi-borobudur.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4>Holiday in Yogyakarta</h4>
-									<p>
-										Indonesia
-									</p>
-									<p>Packages Code : P003</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Duration</span>
-											<span>05 days and 4 nights</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Hotel</span>
-											<span>Hotel Ibis Malioboro</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Airline</span>
-											<span>Sriwijaya Airline</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Extras</span>
-											<span>All Inclusive</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per person</span>
-											<a href="booking.php" class="price-btn">IDR 3,400,-</a>
-										</li>													
-                                    </ul>
-                                </div>
-							</div>
-						</div>
 					</div>																														
 				</div>
 		    </section>

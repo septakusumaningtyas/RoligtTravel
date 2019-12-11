@@ -108,12 +108,13 @@
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="single-destination relative">
-							<div class="thumb relative">
+							<div class="">
 								<div class="overlay overlay-bg"></div>
-								<img class="img-fluid" id="home" src="../img/kuta.jpg" alt="">
+								<img id="home" src="../img/nusapenida.jpg" alt="" width="350px" height="200px">
 							</div>
 							<div class="desc">	
-								<a href="booking.php" class="price-btn">Book</a>										<h4>Kuta Beach</h4>
+								<a href="booking.php" class="price-btn">Book</a>										
+								<h4>Nusa Penida Beach</h4>
 								<p>Bali</p>			
 							</div>
 						</div>
@@ -122,7 +123,7 @@
 						<div class="single-destination relative">
 							<div class="thumb relative">
 								<div class="overlay overlay-bg"></div>
-								<img class="img-fluid" id="home" src="../img/Pink-Beach-Lombok.jpg" alt="">
+								<img id="home" src="../img/Pink-Beach-Lombok.jpg" alt="" width="350px" height="200px">
 							</div>
 							<div class="desc">	
 								<a href="booking.php" class="price-btn">Book</a>			
@@ -133,9 +134,9 @@
 					</div>
 					<div class="col-lg-4">
 					    <div class="single-destination relative">
-							<div class="thumb relative">
+							<div class="">
 								<div class="overlay overlay-bg"></div>
-								<img class="img-fluid" id="home" src="../img/Candi-borobudur.jpg" alt="">
+								<img id="home" src="../img/borobudur.jpg" alt="" width="350px" height="200px">
 							</div>
 							<div class="desc">	
 								<a href="booking.php" class="price-btn">Book</a>			
