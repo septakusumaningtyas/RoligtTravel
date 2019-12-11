@@ -88,7 +88,7 @@
 						<h1 class="text-white">
 							Tourist Attraction				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php">Tourist Attraction</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="tourist.php">Tourist Attraction</a></p>
 				        </div>	
 				    </div>
 			    </div>
@@ -122,7 +122,7 @@
                                             }
                                         ?>
                                     </select>
-									<p>HOTELS</p>
+									<p>TOURIST ATTRACTION</p>
 									<label class="text-align left" for="to">To</label>
 									<select name="to" id="to" class="form-control" required>
                                         <?php
@@ -140,30 +140,6 @@
 									<input type="date" class="form-control" name="leave" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
 									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
 									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">From - To</label>
-									<select name="from" id="from" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<select name="ke" id="ke" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<input type="date" class="form-control" name="departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="return"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
 									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
 									<p>Please check your data before you submited it</p>
 								</form>
