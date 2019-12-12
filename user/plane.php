@@ -112,16 +112,6 @@
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
 									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
 									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<label for="Packages">Packages Code</label>
-									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <?php
-                                            $paket = mysqli_query($con,"select * from tb_packages");
-                                            while($data2 = mysqli_fetch_array($paket))
-                                            {
-                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
-                                            }
-                                        ?>
-                                    </select>
 									<p>FLIGHTS</p>
 									<label class="text-align left" for="dari">From - To</label>
 									<select name="from" id="from" class="form-control">
