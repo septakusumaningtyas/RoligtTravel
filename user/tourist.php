@@ -112,34 +112,11 @@
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
 									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
 									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<label for="Packages">Packages Code</label>
-									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <?php
-                                            $paket = mysqli_query($con,"select * from tb_packages");
-                                            while($data2 = mysqli_fetch_array($paket))
-                                            {
-                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
-                                            }
-                                        ?>
-                                    </select>
 									<p>TOURIST ATTRACTION</p>
-									<label class="text-align left" for="to">To</label>
-									<select name="to" id="to" class="form-control" required>
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>	
-									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="Room " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
-									<label for="arrival">Arrival Date</label>
-									<input type="date" class="form-control" name="arrival" data-date-format="DD/MM/YYY" required placeholder="Arrival " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
-									<label for="leave">Leave Date</label>
+									<input type="text" class="form-control" name="name" placeholder="To " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
+									<label for="leave">Date</label>
 									<input type="date" class="form-control" name="leave" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
-									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
+									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="Passenger" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '" required>
 									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
 									<p>Please check your data before you submited it</p>
 								</form>
