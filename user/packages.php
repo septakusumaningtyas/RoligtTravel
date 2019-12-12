@@ -98,7 +98,7 @@
 		            <div class="row d-flex justify-content-center">
 		                <div class="menu-content pb-70 col-lg-8">
 		                    <div class="title text-center">
-		                        <h1 class="mb-10">Today’s Hot Deals</h1>
+		                        <h1 class="mb-10">Today's Hot Deals</h1>
 		                        <p>Gustave Flaubert - "Travel makes one modest, you see what a tiny place you occupy in the world."</p>
 		                    </div>
 		                </div>

@@ -86,7 +86,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							About Us				
+							Contact				
 						</h1>	
 						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="contact.php"> Contact </a></p>
 				        </div>	
