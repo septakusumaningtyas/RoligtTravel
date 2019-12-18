@@ -1,30 +1,5 @@
 <?php
 	include '../helper/connection.php';
-
-    if (isset($_POST['submit'])){
-        $name=$_POST["name"];
-		$address=$_POST["address"];
-		$no=$_POST["no"];
-		$to=$_POST["to"];
-		$room=$_POST["room"];
-		$arrival=$_POST["arrival"];
-		$leave=$_POST["leave"];
-		$adults=$_POST["adults"];
-		$child=$_POST["child"];
-		$from=$_POST["from"];
-		$ke=$_POST["ke"];
-		$departure=$_POST["departure"];
-		$return=$_POST["return"];
-		$pass=$_POST["pass"];
-		$kode_pkt = $_POST["kode_pkt"];
-		$query = mysqli_query($con, "select harga from tb_packages where kode_pkt = '$kode_pkt'");
-		$rTotal=mysqli_fetch_assoc($query);
-		$total = $rTotal["harga"] * $pass;
-
-		
-		$query1= mysqli_query($con, "insert into tb_hotel_detail (tujuan_cust, jml_kamar, arrival_date, leave_date, adult, children) values ('$to','$room','$arrival','$leave',$adults,$child)");
-
-    }
 ?>
 <html>
     <head>
@@ -113,7 +88,7 @@
 						<h1 class="text-white">
 							Booking				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php"> Booking Page</a><span class="fas fa-arrow-right"></span>  <a href="booked.php"> Booked Page</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php"> Booking Page</a> <span class="fas fa-arrow-right"></span> <a href="booked.php"> Booked Page</a> <span class="fas fa-arrow-right"></span> <a href="pay.php"> Pay Page</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -122,60 +97,47 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">This is your booking data</h2>
+                <h2 class="judul-book">This is your confirmation for your pay</h2>
+				<p class="sub-judul-book">Please upload your proof of transaction</p>
 				<div class="row align-items-center">
 					<div class="col-lg-6 col-md-4 banner-right">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
+								<a class="nav-link active" id="trans-tab" data-toggle="tab" href="#trans" role="tab" aria-controls="trans" aria-selected="false">Transaction</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="pay.php" method="POST" enctype="multipart/form-data">
-								<fieldset disabled>
-									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="<?php echo $name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="<?php echo $address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="<?php echo $no ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+							<div class="tab-pane fade show active" id="trans" role="tabpanel" aria-labelledby="trans-tab">
+								<form class="form-wrap" action="confirmation.php" method="POST" enctype="multipart/form-data">
+									<label for="kode">Customer Code</label>
+									<select name="kode_cust" id="kode_cust" class="form-control">
+                                        <?php
+                                            $paket = mysqli_query($con,"select * from tb_customer");
+                                            while($data2 = mysqli_fetch_array($paket))
+                                            {
+                                                echo "<option value = $data2[kode_cust]>$data2[nama_cust]</option>";
+                                            }
+                                        ?>
+                                    </select>
 									<label for="Packages">Packages Code</label>
 									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <option><?php echo $kode_pkt ?></option>
+                                        <?php
+                                            $paket = mysqli_query($con,"select * from tb_packages");
+                                            while($data2 = mysqli_fetch_array($paket))
+                                            {
+                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
+                                            }
+                                        ?>
                                     </select>
-									<p>HOTELS</p>
-									<label class="text-align left" for="to">To</label>
-									<select name="to" id="to" class="form-control" required>
-										<option><?php echo $to ?></option>
-                                    </select>	
-									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="<?php echo $room ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
-									<label for="arrival">Arrival Date</label>
-									<input type="date" class="form-control" name="arrival" value="<?php echo $arrival ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
-									<label for="leave">Leave Date</label>
-									<input type="date" class="form-control" name="leave" value="<?php echo $leave ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="<?php echo $adults ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
-									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="<?php echo $child ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">From - To</label>
-									<select name="from" id="from" class="form-control">
-										<option><?php echo $from ?></option>
-                                    </select>
-									<select name="ke" id="ke" class="form-control">
-										<option><?php echo $ke ?></option>
-                                    </select>
-									<input type="date" class="form-control" name="departure" value="<?php echo $departure ?>" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="return"  value="<?php echo $return ?>" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="<?php echo $pass ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
-									<p>PAY</p>
-									<p>Price : <?php echo $total ?></p>
-									</fieldset>
-									<input type="submit" name="pay" value="Pay" class="primary-btn text-uppercase">
-								</form>
+									<label for="Proof of transaction">Proof of transaction</label>
+									<input type="file" class="form-control" name="gambar" placeholder="Proof of transaction " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Proof of transaction '">
+									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
+								</form>							  	
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/booking.jpg" alt="">
+						<img class="img-fluid" src="../img/booked.jpg" alt="">
 					</div>
 				</div>
 			</div>	
@@ -209,7 +171,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>	
+					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -238,7 +200,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>						
+					</div>							
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

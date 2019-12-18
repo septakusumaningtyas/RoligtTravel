@@ -107,7 +107,7 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="booked.php" method="POST" enctype="multipart/form-data">
+								<form class="form-wrap" action="booked_hotel.php" method="POST" enctype="multipart/form-data">
 									<p>BOOKING HOTEL</p>
 									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
 									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
