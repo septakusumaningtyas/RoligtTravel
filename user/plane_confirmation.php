@@ -1,5 +1,47 @@
 <?php
-    include '../helper/connection.php';
+	include '../helper/connection.php';
+
+	if (isset($_POST['submit'])){
+		$code_flight = $_POST["code_flight"];
+		$cust_name = $_POST["cust_name"];
+		$code=$_FILES["gambar"]["error"];
+		if($code===0){
+			$nama_folder="../upload";
+			$tmp=$_FILES["gambar"]["tmp_name"];
+			$nama_file=$_FILES["gambar"]["name"];
+			$path="$nama_folder/$nama_file";
+			$upload_check=false;
+			$tipe_file=array("image/jpeg","image/jpg","image/png");
+
+			if(!in_array($_FILES["gambar"]["type"],$tipe_file)){
+				$error.="Cek kembali ekstensi file anda (*.jpeg,*.jpg,*.png)<br>";
+				$upload_check=true;
+				header("Location: plane_pay.php?error=$error");
+			}
+			
+			if(file_exists($path)){
+				$error.="File dengan nama yang sama sudah tersimpan, coba lagi<br>";
+				$upload_check=true;
+				header("Location: plane_pay.php?error=$error");
+			}
+			if(!$upload_check AND move_uploaded_file($tmp,$path)){ 
+				$query="insert into tb_planetransaksi (cust_name,code_flight,bukti_trans,flag) values ('$cust_name','$code_flight','$path','1')";
+				
+				if(mysqli_query($con, $query)){
+					header("Location: plane_confirmation.php");
+				}else{
+					$error=urlencode("Data tidak berhasil ditambahkan");
+					header("Location: plane_pay.php?error=$error");
+				}
+				
+				mysqli_close($con);      
+			}
+			else{
+				$error="Upload Gambar Gagal! Cek kembali ekstensi file anda (*.jpeg,*.jpg,*.png)<br>";
+				header("Location: plane_pay.php?error=$error");
+			}
+		}
+	}
 ?>
 <html>
     <head>
@@ -72,7 +114,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-                          <li><a href="hotel.php">Hotel</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -86,9 +128,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Flight Ticket				
+							Confirmation				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php">Flight Ticket</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php"> Flight Ticket</a> <span class="fas fa-arrow-right"></span> <a href="plane_booked.php"> Booked Ticket</a> <span class="fas fa-arrow-right"></span> <a href="plane_pay.php"> Pay Ticket</a> <span class="fas fa-arrow-right"></span> <a href="plane_confirmation.php"> Confirmation Page</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -97,64 +139,44 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">Fill this form to booked the flight ticket</h2>
+                <h2 class="judul-book">This is your confirmation for your pay</h2>
+				<p class="sub-judul-book">Please do a screenshot or print this confirmation</p>
 				<div class="row align-items-center">
-					<div class="col-lg-6 col-md-4 banner-right">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
-							</li>
-						</ul>
-						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="plane_booked.php" method="POST" enctype="multipart/form-data">
-									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="cust_name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="cust_address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="cust_phone" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">Flight Code</label>
-									<select name="code_flight" id="code_flight" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_hargaflight");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_fly]>$data[kode_fly]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<label class="text-align left" for="dari">From - To</label>
-									<select name="cust_from" id="cust_from" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<select name="cust_to" id="cust_to" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<label class="text-align left" for="dari">Departure - Return</label>
-									<input type="date" class="form-control" name="cust_departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="cust_arrival"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="cust_pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
-									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
-									<p>Please check your data before you submited it</p>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/booking.jpg" alt="">
+					<div class="col-lg-12 banner-right">
+						<table id="booking" class="table table-stripped text-center mt-3" style="width:100%">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>No Transaksi</th>
+									<th>Customer Code</th>
+									<th>Code Flight</th>
+									<th>Transaction</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+							$query = "select * from tb_planetransaksi";
+							$result = mysqli_query($con, $query);
+
+							if (mysqli_num_rows($result) > 0){
+								$index = 1;
+								while($row = mysqli_fetch_assoc($result)){
+									$no_transaksi = $row["no_transaksi"];
+									echo "
+									<tr>
+										<td>" . $index++ . "</td>
+										<td>" .$row["no_transaksi"]. "</td>
+										<td>" .$row["cust_name"]. "</td>
+										<td>" .$row["code_flight"]. "</td>
+										<td><img src='../upload/".$row["bukti_trans"]. "' height=200px width=200px></td>
+									</tr>
+									";
+								}
+							}
+							mysqli_close($con); 
+							?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>	
@@ -188,7 +210,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>	
+					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -217,7 +239,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>						
+					</div>							
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

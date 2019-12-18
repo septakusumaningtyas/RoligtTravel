@@ -1,5 +1,5 @@
 <?php
-    include '../helper/connection.php';
+	include '../helper/connection.php';
 ?>
 <html>
     <head>
@@ -72,7 +72,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-                          <li><a href="hotel.php">Hotel</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -86,9 +86,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Flight Ticket				
+							Pay Ticket				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php">Flight Ticket</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php"> Flight Ticket</a> <span class="fas fa-arrow-right"></span> <a href="plane_booked.php"> Booked Ticket</a> <span class="fas fa-arrow-right"></span> <a href="plane_pay.php"> Pay Ticket</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -97,64 +97,47 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">Fill this form to booked the flight ticket</h2>
+                <h2 class="judul-book">This is your confirmation for your pay</h2>
+				<p class="sub-judul-book">Please upload your proof of transaction</p>
 				<div class="row align-items-center">
 					<div class="col-lg-6 col-md-4 banner-right">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
+								<a class="nav-link active" id="trans-tab" data-toggle="tab" href="#trans" role="tab" aria-controls="trans" aria-selected="false">Transaction</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="plane_booked.php" method="POST" enctype="multipart/form-data">
-									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="cust_name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="cust_address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="cust_phone" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">Flight Code</label>
-									<select name="code_flight" id="code_flight" class="form-control">
+							<div class="tab-pane fade show active" id="trans" role="tabpanel" aria-labelledby="trans-tab">
+								<form class="form-wrap" action="plane_confirmation.php" method="POST" enctype="multipart/form-data">
+									<label for="kode">Customer Code</label>
+									<select name="cust_name" id="cust_name" class="form-control">
                                         <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_hargaflight");
-                                            while($data = mysqli_fetch_array($tujuan))
+                                            $paket = mysqli_query($con,"select * from tb_flight");
+                                            while($data2 = mysqli_fetch_array($paket))
                                             {
-                                                echo "<option value = $data[kode_fly]>$data[kode_fly]</option>";
+                                                echo "<option value = $data2[kode_flight]>$data2[cust_name]</option>";
                                             }
                                         ?>
                                     </select>
-									<label class="text-align left" for="dari">From - To</label>
-									<select name="cust_from" id="cust_from" class="form-control">
+									<label for="Packages">Flight Code</label>
+									<select name="code_flight" id="flight" class="form-control">
                                         <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
+                                            $paket = mysqli_query($con,"select * from tb_hargaflight");
+                                            while($data2 = mysqli_fetch_array($paket))
                                             {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
+                                                echo "<option value = $data2[kode_fly]>$data2[kode_fly]</option>";
                                             }
                                         ?>
                                     </select>
-									<select name="cust_to" id="cust_to" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<label class="text-align left" for="dari">Departure - Return</label>
-									<input type="date" class="form-control" name="cust_departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="cust_arrival"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="cust_pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
+									<label for="Proof of transaction">Proof of transaction</label>
+									<input type="file" class="form-control" name="gambar" placeholder="Proof of transaction " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Proof of transaction '">
 									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
-									<p>Please check your data before you submited it</p>
-								</form>
+								</form>							  	
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/booking.jpg" alt="">
+						<img class="img-fluid" src="../img/booked.jpg" alt="">
 					</div>
 				</div>
 			</div>	
@@ -188,7 +171,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>	
+					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -217,7 +200,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>						
+					</div>							
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

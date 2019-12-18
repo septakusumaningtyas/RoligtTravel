@@ -832,6 +832,120 @@
 		    </section>
 		<!-- End Hotel Area -->
 
+		<!-- Start Flight Area -->
+		<section class="destinations-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-40 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">FLIGHT SCHEDULE</h1>
+		                        <p>Henry Miller - "One's destination is never a place, but a new way of seeing things."</p>
+		                    </div>
+		                </div>
+		            </div>						
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="single-destinations">
+								<div class="">
+									<img src="../img/bandara.jpg" alt="" width="1110px" height="300px">
+								</div>
+								<div class="details">
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>Flight Code</span>
+											<span>Airline</span>
+											<span>From</span>
+											<span>To</span>
+											<span>Price</span>
+										</li>
+									</ul>
+									<ul class="package-list">
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG01</span>
+											<span>Citilink</span>
+											<span>Bandung</span>
+											<span>Bali</span>
+											<a href="plane.php" class="price-btn">IDR 1,203,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG02</span>
+											<span>Garuda</span>
+											<span>Bandung</span>
+											<span>Bali</span>
+											<a href="plane.php" class="price-btn">IDR 3,105,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG03</span>
+											<span>Garuda</span>
+											<span>Bandung</span>
+											<span>Yogyakarta</span>
+											<a href="plane.php" class="price-btn">IDR 4,453,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG04</span>
+											<span>Citilink</span>
+											<span>Bandung</span>
+											<span>Jakarta</span>
+											<a href="plane.php" class="price-btn">IDR 411,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG05</span>
+											<span>Garuda</span>
+											<span>Bandung</span>
+											<span>Jakarta</span>
+											<a href="plane.php" class="price-btn">IDR 3,724,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG06</span>
+											<span>LionAir</span>
+											<span>Bandung</span>
+											<span>Lombok</span>
+											<a href="plane.php" class="price-btn">IDR 1,919-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG07</span>
+											<span>LionAir</span>
+											<span>Bandung</span>
+											<span>Lombok</span>
+											<a href="plane.php" class="price-btn">IDR 1,919,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG08</span>
+											<span>LionAir</span>
+											<span>Bandung</span>
+											<span>Malang</span>
+											<a href="plane.php" class="price-btn">IDR 2,971,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG09</span>
+											<span>Garuda</span>
+											<span>Bandung</span>
+											<span>Malang</span>
+											<a href="plane.php" class="price-btn">IDR 5,121,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG10</span>
+											<span>Citilink</span>
+											<span>Bandung</span>
+											<span>Surabaya</span>
+											<a href="plane.php" class="price-btn">IDR 1,497,-</a>
+										</li>
+										<li class="d-flex justify-content-between align-items-center">
+											<span>BDG11</span>
+											<span>Garuda</span>
+											<span>Bandung</span>
+											<span>Surabaya</span>
+											<a href="plane.php" class="price-btn">IDR 2,221,-</a>
+										</li>													
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>																														
+				</div>
+		    </section>
+		<!-- End Flight Area -->
+
         <!-- start footer Area -->		
 		<footer class="footer-area section-gap">
 			<div class="container">

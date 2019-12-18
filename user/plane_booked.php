@@ -1,5 +1,22 @@
 <?php
-    include '../helper/connection.php';
+	include '../helper/connection.php';
+
+    if (isset($_POST['submit'])){
+        $cust_name=$_POST["cust_name"];
+		$cust_address=$_POST["cust_address"];
+        $cust_phone=$_POST["cust_phone"];
+        $code_flight=$_POST["code_flight"];
+		$cust_from=$_POST["cust_from"];
+		$cust_to=$_POST["cust_to"];
+		$cust_departure=$_POST["cust_departure"];
+		$cust_arrival=$_POST["cust_arrival"];
+		$cust_pass=$_POST["cust_pass"];
+		$query = mysqli_query($con, "select harga from tb_hargaflight where kode_fly = '$code_flight'");
+		$rTotal=mysqli_fetch_assoc($query);
+		$total = $rTotal["harga"] * $cust_pass;
+
+		$query1= mysqli_query($con, "insert into tb_flight (cust_name, cust_address, cust_phone, code_flight, cust_from, cust_to, cust_departure, cust_arrival, cust_pass, flag) values ('$cust_name','$cust_address','$cust_phone','$code_flight','$cust_from', '$cust_to', '$cust_departure', '$cust_arrival','$cust_pass','1')");
+    }
 ?>
 <html>
     <head>
@@ -72,7 +89,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-                          <li><a href="hotel.php">Hotel</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -86,9 +103,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Flight Ticket				
+							Booked Ticket				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php">Flight Ticket</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php"> Flight Ticket</a><span class="fas fa-arrow-right"></span>  <a href="plane_booked.php"> Booked Ticket</a></p>
 				        </div>	
 				    </div>
 			    </div>
@@ -97,7 +114,7 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">Fill this form to booked the flight ticket</h2>
+                <h2 class="judul-book">This is your booking data</h2>
 				<div class="row align-items-center">
 					<div class="col-lg-6 col-md-4 banner-right">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -107,48 +124,32 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="plane_booked.php" method="POST" enctype="multipart/form-data">
+								<form class="form-wrap" action="plane_pay.php" method="POST" enctype="multipart/form-data">
+								<fieldset disabled>
 									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="cust_name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="cust_address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="cust_phone" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">Flight Code</label>
+									<input type="text" class="form-control" name="name" placeholder="<?php echo $cust_name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="address" placeholder="<?php echo $cust_address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="no" placeholder="<?php echo $cust_phone ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+									<label for="Packages">Packages Code</label>
 									<select name="code_flight" id="code_flight" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_hargaflight");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_fly]>$data[kode_fly]</option>";
-                                            }
-                                        ?>
+                                        <option><?php echo $code_flight ?></option>
                                     </select>
+									<p>FLIGHTS</p>
 									<label class="text-align left" for="dari">From - To</label>
-									<select name="cust_from" id="cust_from" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
+									<select name="from" id="from" class="form-control">
+										<option><?php echo $cust_from ?></option>
                                     </select>
-									<select name="cust_to" id="cust_to" class="form-control">
-                                        <?php
-                                            $tujuan = mysqli_query($con,"select * from tb_tujuan");
-                                            while($data = mysqli_fetch_array($tujuan))
-                                            {
-                                                echo "<option value = $data[kode_tujuan]>$data[nama_tujuan]</option>";
-                                            }
-                                        ?>
+									<select name="ke" id="ke" class="form-control">
+										<option><?php echo $cust_to ?></option>
                                     </select>
-									<label class="text-align left" for="dari">Departure - Return</label>
-									<input type="date" class="form-control" name="cust_departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="cust_arrival"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<input type="date" class="form-control" name="departure" value="<?php echo $cust_departure ?>" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
+									<input type="date" class="form-control" name="return"  value="<?php echo $cust_arrival ?>" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
 									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="cust_pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
-									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
-									<p>Please check your data before you submited it</p>
+									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="<?php echo $cust_pass ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
+									<p>PAY</p>
+									<p>Price : <?php echo $total ?></p>
+									</fieldset>
+									<input type="submit" name="pay" value="Pay" class="primary-btn text-uppercase">
 								</form>
 							</div>
 						</div>
