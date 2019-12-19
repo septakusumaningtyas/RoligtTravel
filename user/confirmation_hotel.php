@@ -1,5 +1,47 @@
 <?php
-    include '../helper/connection.php';
+	include '../helper/connection.php';
+
+	if (isset($_POST['submit'])){
+		$kode_hotel = $_POST["kode_hotel"];
+		$cust_name = $_POST["cust_name"];
+		$code=$_FILES["gambar"]["error"];
+		if($code===0){
+			$nama_folder="../upload";
+			$tmp=$_FILES["gambar"]["tmp_name"];
+			$nama_file=$_FILES["gambar"]["name"];
+			$path="$nama_folder/$nama_file";
+			$upload_check=false;
+			$tipe_file=array("image/jpeg","image/jpg","image/png");
+
+			if(!in_array($_FILES["gambar"]["type"],$tipe_file)){
+				$error.="Cek kembali ekstensi file anda (*.jpeg,*.jpg,*.png)<br>";
+				$upload_check=true;
+				header("Location: pay_hotel.php?error=$error");
+			}
+			
+			if(file_exists($path)){
+				$error.="File dengan nama yang sama sudah tersimpan, coba lagi<br>";
+				$upload_check=true;
+				header("Location: pay_hotel.php?error=$error");
+			}
+			if(!$upload_check AND move_uploaded_file($tmp,$path)){ 
+				$query="insert into tb_hoteltransaksi (cust_name,kode_hotel,bukti_trans,flag) values ('$cust_name','$kode_hotel','$path','1')";
+				
+				if(mysqli_query($con, $query)){
+					header("Location: confirmation_hotel.php");
+				}else{
+					$error=urlencode("Data tidak berhasil ditambahkan");
+					header("Location: pay_hotel.php?error=$error");
+				}
+				
+				mysqli_close($con);      
+			}
+			else{
+				$error="Upload Gambar Gagal! Cek kembali ekstensi file anda (*.jpeg,*.jpg,*.png)<br>";
+				header("Location: pay_hotel.php?error=$error");
+			}
+		}
+	}
 ?>
 <html>
     <head>
@@ -72,7 +114,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-                          <li><a href="hotel.php">Hotel</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -86,9 +128,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Hotel				
+							Confirmation				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="hotel.php">Hotel</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="hotel.php">Hotel</a> <span class="fas fa-arrow-right"></span> <a href="booked_hotel.php"> Booked Hotel</a> <span class="fas fa-arrow-right"></span> <a href="pay_hotel.php"> Pay</a> <span class="fas fa-arrow-right"></span> <a href="confirmation_hotel.php"> Confirmation Page</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -97,54 +139,44 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">Fill this form to booked the hotel</h2>
+                <h2 class="judul-book">This is your confirmation for your pay</h2>
+				<p class="sub-judul-book">Please do a screenshot or print this confirmation</p>
 				<div class="row align-items-center">
-					<div class="col-lg-6 col-md-4 banner-right">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
-							</li>
-						</ul>
-						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="booked_hotel.php" method="POST" enctype="multipart/form-data">
-									<p>BOOKING HOTEL</p>
-									<input type="text" class="form-control" name="cust_name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="cust_address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="cust_phone" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<input type="number" min="1" max="20" class="form-control" name="cust_room" placeholder="Room " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
-									<label for="location">Location</label>
-										<select name="location_code" id="location_code" class="form-control">
-											<?php
-												$paket = mysqli_query($con,"select * from tb_tujuan");
-												while($data2 = mysqli_fetch_array($paket))
-												{
-													echo "<option value = $data2[kode_tujuan]>$data2[nama_tujuan]</option>";
-												}
-											?>
-										</select>
-									<label for="hotelName">Hotel Name</label>
-										<select name="hotel_name" id="hotel_name" class="form-control">
-											<?php
-												$paket = mysqli_query($con,"select * from tb_hotel");
-												while($data2 = mysqli_fetch_array($paket))
-												{
-													echo "<option value = $data2[kode_hotel]>$data2[nama_hotel]</option>";
-												}
-											?>
-										</select>
-									<label for="arrival">Check-in</label>
-									<input type="date" class="form-control" name="cust_arrival" data-date-format="DD/MM/YYY" required placeholder="Arrival " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
-									<label for="leave">Check-out</label>
-									<input type="date" class="form-control" name="cust_leave" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
-									<p>Please check your data before you submited it</p>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/booking.jpg" alt="">
+					<div class="col-lg-12 banner-right">
+						<table id="booking" class="table table-stripped text-center mt-3" style="width:100%">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>No Transaksi</th>
+									<th>Customer Code</th>
+									<th>Hotel Code</th>
+									<th>Transaction</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+							$query = "select * from tb_hoteltransaksi";
+							$result = mysqli_query($con, $query);
+
+							if (mysqli_num_rows($result) > 0){
+								$index = 1;
+								while($row = mysqli_fetch_assoc($result)){
+									$no_transaksi = $row["no_transaksi"];
+									echo "
+									<tr>
+										<td>" . $index++ . "</td>
+										<td>" .$row["no_transaksi"]. "</td>
+										<td>" .$row["cust_name"]. "</td>
+										<td>" .$row["kode_hotel"]. "</td>
+										<td><img src='../upload/".$row["bukti_trans"]. "' height=200px width=200px></td>
+									</tr>
+									";
+								}
+							}
+							mysqli_close($con); 
+							?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>	
@@ -178,7 +210,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>	
+					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -207,7 +239,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>						
+					</div>							
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

@@ -720,7 +720,7 @@
 								<div class="details">
 									<h4>HARRIS Hotel & Conventions Denpasar</h4>
 									<p>
-										Bai, Indonesia
+										Bali, Indonesia
 									</p>
 									<ul class="package-list">
 										<li class="d-flex justify-content-between align-items-center">
