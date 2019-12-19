@@ -88,7 +88,7 @@
 						<h1 class="text-white">
 							Booking				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php"> Booking Page</a> <span class="fas fa-arrow-right"></span> <a href="booked.php"> Booked Page</a> <span class="fas fa-arrow-right"></span> <a href="pay.php"> Pay Page</a> </p> 
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="hotel.php">Hotel</a> <span class="fas fa-arrow-right"></span> <a href="booked_hotel.php"> Booked Hotel</a> <span class="fas fa-arrow-right"></span> <a href="pay_hotel.php"> Pay</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -108,24 +108,14 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="trans" role="tabpanel" aria-labelledby="trans-tab">
-								<form class="form-wrap" action="confirmation.php" method="POST" enctype="multipart/form-data">
-									<label for="kode">Customer Code</label>
+								<form class="form-wrap" action="confirmation_tourist.php" method="POST" enctype="multipart/form-data">
+									<label for="Packages">Tourist Atraction</label>
 									<select name="kode_cust" id="kode_cust" class="form-control">
                                         <?php
-                                            $paket = mysqli_query($con,"select * from tb_customer");
+											$paket = mysqli_query($con,"SELECT a.*, b.* FROM tb_tourist_booking a, tb_customer b WHERE a.kode_cust = b.kode_cust");
                                             while($data2 = mysqli_fetch_array($paket))
                                             {
                                                 echo "<option value = $data2[kode_cust]>$data2[nama_cust]</option>";
-                                            }
-                                        ?>
-                                    </select>
-									<label for="Packages">Packages Code</label>
-									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <?php
-                                            $paket = mysqli_query($con,"select * from tb_packages");
-                                            while($data2 = mysqli_fetch_array($paket))
-                                            {
-                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
                                             }
                                         ?>
                                     </select>
