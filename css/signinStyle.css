@@ -14,6 +14,13 @@ body {
   background-size: 100%;
 }
 
+@media (min-width: 576px){
+  .form-inline .form-control {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  }
+
 .form-signin {
   width: 100%;
   max-width: 330px;
