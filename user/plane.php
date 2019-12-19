@@ -107,14 +107,24 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="booked.php" method="POST" enctype="multipart/form-data">
+								<form class="form-wrap" action="plane_booked.php" method="POST" enctype="multipart/form-data">
 									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+									<input type="text" class="form-control" name="cust_name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="cust_address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="cust_phone" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
 									<p>FLIGHTS</p>
+									<label class="text-align left" for="dari">Flight Code</label>
+									<select name="code_flight" id="code_flight" class="form-control">
+                                        <?php
+                                            $tujuan = mysqli_query($con,"select * from tb_hargaflight");
+                                            while($data = mysqli_fetch_array($tujuan))
+                                            {
+                                                echo "<option value = $data[kode_fly]>$data[kode_fly]</option>";
+                                            }
+                                        ?>
+                                    </select>
 									<label class="text-align left" for="dari">From - To</label>
-									<select name="from" id="from" class="form-control">
+									<select name="cust_from" id="cust_from" class="form-control">
                                         <?php
                                             $tujuan = mysqli_query($con,"select * from tb_tujuan");
                                             while($data = mysqli_fetch_array($tujuan))
@@ -123,7 +133,7 @@
                                             }
                                         ?>
                                     </select>
-									<select name="ke" id="ke" class="form-control">
+									<select name="cust_to" id="cust_to" class="form-control">
                                         <?php
                                             $tujuan = mysqli_query($con,"select * from tb_tujuan");
                                             while($data = mysqli_fetch_array($tujuan))
@@ -132,10 +142,11 @@
                                             }
                                         ?>
                                     </select>
-									<input type="date" class="form-control" name="departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="return"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<label class="text-align left" for="dari">Departure - Return</label>
+									<input type="date" class="form-control" name="cust_departure" data-date-format="DD/MM/YYY" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
+									<input type="date" class="form-control" name="cust_arrival"  data-date-format="DD/MM/YYY" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
 									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
+									<input type="number" min="1" max="20" class="form-control" name="cust_pass" placeholder="Passenger " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
 									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
 									<p>Please check your data before you submited it</p>
 								</form>

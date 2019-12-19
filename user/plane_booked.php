@@ -2,28 +2,20 @@
 	include '../helper/connection.php';
 
     if (isset($_POST['submit'])){
-        $name=$_POST["name"];
-		$address=$_POST["address"];
-		$no=$_POST["no"];
-		$to=$_POST["to"];
-		$room=$_POST["room"];
-		$arrival=$_POST["arrival"];
-		$leave=$_POST["leave"];
-		$adults=$_POST["adults"];
-		$child=$_POST["child"];
-		$from=$_POST["from"];
-		$ke=$_POST["ke"];
-		$departure=$_POST["departure"];
-		$return=$_POST["return"];
-		$pass=$_POST["pass"];
-		$kode_pkt = $_POST["kode_pkt"];
-		$query = mysqli_query($con, "select harga from tb_packages where kode_pkt = '$kode_pkt'");
+        $cust_name=$_POST["cust_name"];
+		$cust_address=$_POST["cust_address"];
+        $cust_phone=$_POST["cust_phone"];
+        $code_flight=$_POST["code_flight"];
+		$cust_from=$_POST["cust_from"];
+		$cust_to=$_POST["cust_to"];
+		$cust_departure=$_POST["cust_departure"];
+		$cust_arrival=$_POST["cust_arrival"];
+		$cust_pass=$_POST["cust_pass"];
+		$query = mysqli_query($con, "select harga from tb_hargaflight where kode_fly = '$code_flight'");
 		$rTotal=mysqli_fetch_assoc($query);
-		$total = $rTotal["harga"] * $pass;
+		$total = $rTotal["harga"] * $cust_pass;
 
-		
-		$query1= mysqli_query($con, "insert into tb_hotel_detail (tujuan_cust, jml_kamar, arrival_date, leave_date, adult, children) values ('$to','$room','$arrival','$leave',$adults,$child)");
-
+		$query1= mysqli_query($con, "insert into tb_flight (cust_name, cust_address, cust_phone, code_flight, cust_from, cust_to, cust_departure, cust_arrival, cust_pass, flag) values ('$cust_name','$cust_address','$cust_phone','$code_flight','$cust_from', '$cust_to', '$cust_departure', '$cust_arrival','$cust_pass','1')");
     }
 ?>
 <html>
@@ -111,9 +103,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Booking				
+							Booked Ticket				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php"> Booking Page</a><span class="fas fa-arrow-right"></span>  <a href="booked.php"> Booked Page</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="plane.php"> Flight Ticket</a><span class="fas fa-arrow-right"></span>  <a href="plane_booked.php"> Booked Ticket</a></p>
 				        </div>	
 				    </div>
 			    </div>
@@ -132,40 +124,28 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="pay.php" method="POST" enctype="multipart/form-data">
+								<form class="form-wrap" action="plane_pay.php" method="POST" enctype="multipart/form-data">
 								<fieldset disabled>
 									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="<?php echo $name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="<?php echo $address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="<?php echo $no ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+									<input type="text" class="form-control" name="name" placeholder="<?php echo $cust_name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="address" placeholder="<?php echo $cust_address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="no" placeholder="<?php echo $cust_phone ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
 									<label for="Packages">Packages Code</label>
-									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <option><?php echo $kode_pkt ?></option>
+									<select name="code_flight" id="code_flight" class="form-control">
+                                        <option><?php echo $code_flight ?></option>
                                     </select>
-									<p>HOTELS</p>
-									<label class="text-align left" for="to">To</label>
-									<select name="to" id="to" class="form-control" required>
-										<option><?php echo $to ?></option>
-                                    </select>	
-									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="<?php echo $room ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
-									<label for="arrival">Arrival Date</label>
-									<input type="date" class="form-control" name="arrival" value="<?php echo $arrival ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
-									<label for="leave">Leave Date</label>
-									<input type="date" class="form-control" name="leave" value="<?php echo $leave ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="<?php echo $adults ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
-									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="<?php echo $child ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
 									<p>FLIGHTS</p>
 									<label class="text-align left" for="dari">From - To</label>
 									<select name="from" id="from" class="form-control">
-										<option><?php echo $from ?></option>
+										<option><?php echo $cust_from ?></option>
                                     </select>
 									<select name="ke" id="ke" class="form-control">
-										<option><?php echo $ke ?></option>
+										<option><?php echo $cust_to ?></option>
                                     </select>
-									<input type="date" class="form-control" name="departure" value="<?php echo $departure ?>" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="return"  value="<?php echo $return ?>" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+									<input type="date" class="form-control" name="departure" value="<?php echo $cust_departure ?>" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
+									<input type="date" class="form-control" name="return"  value="<?php echo $cust_arrival ?>" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
 									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="<?php echo $pass ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
+									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="<?php echo $cust_pass ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
 									<p>PAY</p>
 									<p>Price : <?php echo $total ?></p>
 									</fieldset>

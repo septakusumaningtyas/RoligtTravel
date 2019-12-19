@@ -21,8 +21,9 @@
 		$rTotal=mysqli_fetch_assoc($query);
 		$total = $rTotal["harga"] * $pass;
 
-		
-		$query1= mysqli_query($con, "insert into tb_hotel_detail (tujuan_cust, jml_kamar, arrival_date, leave_date, adult, children) values ('$to','$room','$arrival','$leave',$adults,$child)");
+		$query1= mysqli_query($con, "insert into tb_penerbangan_detail (dari_bandara, ke_bandara, departure_date, return_date, jml_passenger) values ('$from','$ke','$departure','$return','$pass')");
+		$query2= mysqli_query($con, "insert into tb_customer (nama_cust, alamat_cust, no_telp_cust,flag) values ('$name','$address','$no','1')");
+		$query3= mysqli_query($con, "insert into tb_hotel_detail (tujuan_cust, jml_kamar, arrival_date, leave_date, adult, children) values ('$to','$room','$arrival','$leave',$adults,$child)");
 
     }
 ?>
@@ -132,44 +133,21 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="pay.php" method="POST" enctype="multipart/form-data">
-								<fieldset disabled>
-									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="<?php echo $name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="<?php echo $address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="<?php echo $no ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<label for="Packages">Packages Code</label>
-									<select name="kode_pkt" id="kode_pkt" class="form-control">
-                                        <option><?php echo $kode_pkt ?></option>
-                                    </select>
-									<p>HOTELS</p>
-									<label class="text-align left" for="to">To</label>
-									<select name="to" id="to" class="form-control" required>
-										<option><?php echo $to ?></option>
-                                    </select>	
-									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="<?php echo $room ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
-									<label for="arrival">Arrival Date</label>
-									<input type="date" class="form-control" name="arrival" value="<?php echo $arrival ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
-									<label for="leave">Leave Date</label>
-									<input type="date" class="form-control" name="leave" value="<?php echo $leave ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="<?php echo $adults ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" required>
-									<input type="number" min="0" max="20" class="form-control" name="child" placeholder="<?php echo $child ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" required>
-									<p>FLIGHTS</p>
-									<label class="text-align left" for="dari">From - To</label>
-									<select name="from" id="from" class="form-control">
-										<option><?php echo $from ?></option>
-                                    </select>
-									<select name="ke" id="ke" class="form-control">
-										<option><?php echo $ke ?></option>
-                                    </select>
-									<input type="date" class="form-control" name="departure" value="<?php echo $departure ?>" required placeholder="Departure " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Departure '">
-									<input type="date" class="form-control" name="return"  value="<?php echo $return ?>" required placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<p>Children under 5 year old didn't count</p>
-									<input type="number" min="1" max="20" class="form-control" name="pass" placeholder="<?php echo $pass ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '">
-									<p>PAY</p>
-									<p>Price : <?php echo $total ?></p>
-									</fieldset>
-									<input type="submit" name="pay" value="Pay" class="primary-btn text-uppercase">
+								<form class="form-wrap" action="pay_hotel.php" method="POST" enctype="multipart/form-data">
+								<p>BOOKING HOTEL</p>
+									<input type="text" class="form-control" name="name" placeholder="Name Customer " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="address" placeholder="Address Customer " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+									<input type="number" min="1" max="20" class="form-control" name="room" placeholder="Room Customer" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room '" required>
+									<label for="arrival">Check-in</label>
+									<input type="date" class="form-control" name="arrival" data-date-format="DD/MM/YYY" required placeholder="Arrival " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrival '">
+									<label for="leave">Check-out</label>
+									<input type="date" class="form-control" name="leave" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
+                                    <input type="text" class="form-control" name="tujuan" placeholder="Tujuan Customer " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tujuan '">
+                                    <input type="text" class="form-control" name="name_hotel" placeholder="Name Hotel " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name Hotel '">
+                                    <input type="text" class="form-control" name="harga" placeholder="Harga " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Harga '">
+									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
+									<p>Please check your data before you submited it</p>
 								</form>
 							</div>
 						</div>
