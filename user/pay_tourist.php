@@ -1,5 +1,5 @@
 <?php
-    include '../helper/connection.php';
+	include '../helper/connection.php';
 ?>
 <html>
     <head>
@@ -72,7 +72,7 @@
 				          <li><a href="booking.php">Booking</a></li>
 				          <li><a href="contact.php">Contact</a></li>
 						  <li><a href="tourist.php">Tourist Attraction</a></li>
-                          <li><a href="hotel.php">Hotel</a></li>
+						  <li><a href="hotel.php">Hotel</a></li>
                           <li><a href="plane.php">Flight Ticket</a></li>
 				        </ul>
 				    </nav><!-- #nav-menu-container -->					      		  
@@ -86,9 +86,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 						<h1 class="text-white">
-							Tourist Attraction				
+							Booking				
 						</h1>	
-						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="tourist.php">Tourist Attraction</a></p>
+						<p class="text-white link-nav"><a href="landingUser.php">Home </a>  <span class="fas fa-arrow-right"></span>  <a href="booking.php"> Booking Page</a> <span class="fas fa-arrow-right"></span> <a href="booked.php"> Booked Page</a> <span class="fas fa-arrow-right"></span> <a href="pay.php"> Pay Page</a> </p> 
 				        </div>	
 				    </div>
 			    </div>
@@ -97,42 +97,47 @@
 		<!-- Start about-info Area -->
 		<section class="book-info-area section-gap">
 			<div class="container">
-                <h2 class="judul-book">Fill this form to booked the tourist attraction</h2>
+                <h2 class="judul-book">This is your confirmation for your pay</h2>
+				<p class="sub-judul-book">Please upload your proof of transaction</p>
 				<div class="row align-items-center">
 					<div class="col-lg-6 col-md-4 banner-right">
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="true">Booking Form</a>
+								<a class="nav-link active" id="trans-tab" data-toggle="tab" href="#trans" role="tab" aria-controls="trans" aria-selected="false">Transaction</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="touristBooking.php" method="POST" enctype="multipart/form-data">
-									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
-									<p>TOURIST ATTRACTION</p>
-									<select name="kode_wisata" id="kode_wisata" class="form-control">
+							<div class="tab-pane fade show active" id="trans" role="tabpanel" aria-labelledby="trans-tab">
+								<form class="form-wrap" action="confirmation.php" method="POST" enctype="multipart/form-data">
+									<label for="kode">Customer Code</label>
+									<select name="kode_cust" id="kode_cust" class="form-control">
                                         <?php
-                                            $wisata = mysqli_query($con,"select * from tb_wisata");
-                                            while($data2 = mysqli_fetch_array($wisata))
+                                            $paket = mysqli_query($con,"select * from tb_customer");
+                                            while($data2 = mysqli_fetch_array($paket))
                                             {
-                                                echo "<option value = $data2[kode_wisata]>$data2[nama_wisata]</option>";
+                                                echo "<option value = $data2[kode_cust]>$data2[nama_cust]</option>";
                                             }
                                         ?>
                                     </select>
-									<label for="leave">Date</label>
-									<input type="date" class="form-control" name="departure" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="0" max="20" class="form-control" name="pass" placeholder="Passenger" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '" required>
+									<label for="Packages">Packages Code</label>
+									<select name="kode_pkt" id="kode_pkt" class="form-control">
+                                        <?php
+                                            $paket = mysqli_query($con,"select * from tb_packages");
+                                            while($data2 = mysqli_fetch_array($paket))
+                                            {
+                                                echo "<option value = $data2[kode_pkt]>$data2[kode_pkt]</option>";
+                                            }
+                                        ?>
+                                    </select>
+									<label for="Proof of transaction">Proof of transaction</label>
+									<input type="file" class="form-control" name="gambar" placeholder="Proof of transaction " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Proof of transaction '">
 									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
-									<p>Please check your data before you submited it</p>
-								</form>
+								</form>							  	
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 info-left">
-						<img class="img-fluid" src="../img/booking.jpg" alt="">
+						<img class="img-fluid" src="../img/booked.jpg" alt="">
 					</div>
 				</div>
 			</div>	
@@ -166,7 +171,7 @@
 								</div>									
 							</div>							
 						</div>
-					</div>	
+					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget">
 							<h6>Transaction Fia </h6>
@@ -195,7 +200,7 @@
 								<li><img src="../img/i14.jpg" alt="" width="60px"></li>
 							</ul>
 						</div>
-					</div>						
+					</div>							
 				</div>	
 				<div class="row footer-bottom d-flex justify-content-between align-items-center">
 					<p>Social Media</p>

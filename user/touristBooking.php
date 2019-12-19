@@ -1,5 +1,30 @@
 <?php
     include '../helper/connection.php';
+
+    if (isset($_POST['submit'])){
+        $name=$_POST["name"];
+		$address=$_POST["address"];
+		$no=$_POST["no"];
+
+		$kode_wisata = $_POST["kode_wisata"];
+
+		$departure = date('Y-m-d', strtotime($_POST['departure']));
+        $pass=$_POST["pass"];
+        
+		$query = mysqli_query($con, "select harga from tb_wisata where kode_wisata = '$kode_wisata'");
+		$rTotal=mysqli_fetch_assoc($query);
+        $total = $rTotal["harga"] * $pass;
+        
+        $getKodeCust = mysqli_query($con, "select kode_cust from tb_customer where nama_cust = '$name'");
+        $getCust = mysqli_fetch_assoc($getKodeCust);
+        $kode_cust = $getCust["kode_cust"];
+        
+        $query2= mysqli_query($con, "insert into tb_customer (nama_cust, alamat_cust, no_telp_cust, paket, flag) values ('$name','$address','$no','$kode_wisata','1')");
+        
+        $query1= mysqli_query($con, "insert into tb_tourist_booking (kode_cust, kode_wisata, date_departure, jml_passenger, harga_detail)
+        values ('$kode_cust','$kode_wisata','$departure', '$pass', '$total')");
+
+    }
 ?>
 <html>
     <head>
@@ -107,25 +132,21 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
-								<form class="form-wrap" action="touristBooking.php" method="POST" enctype="multipart/form-data">
+								<form class="form-wrap" action="pay_tourist.php" method="POST" enctype="multipart/form-data">
 									<p>PERSONAL DATA</p>
-									<input type="text" class="form-control" name="name" placeholder="Name " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
-									<input type="text" class="form-control" name="address" placeholder="Address " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
-									<input type="text" class="form-control" name="no" placeholder="Phone Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
+                                    <fieldset disabled>
+									<input type="text" class="form-control" name="name" placeholder="<?php echo $name ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name '">	
+									<input type="text" class="form-control" name="address" placeholder="<?php echo $address ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address '">
+									<input type="text" class="form-control" name="no" placeholder="<?php echo $no ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
 									<p>TOURIST ATTRACTION</p>
-									<select name="kode_wisata" id="kode_wisata" class="form-control">
-                                        <?php
-                                            $wisata = mysqli_query($con,"select * from tb_wisata");
-                                            while($data2 = mysqli_fetch_array($wisata))
-                                            {
-                                                echo "<option value = $data2[kode_wisata]>$data2[nama_wisata]</option>";
-                                            }
-                                        ?>
-                                    </select>
+									<input type="text" class="form-control" name="kode_wisata" placeholder="<?php echo $kode_wisata ?> " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number '">
 									<label for="leave">Date</label>
-									<input type="date" class="form-control" name="departure" data-date-format="DD/MM/YYY" required placeholder="Leave " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
-									<input type="number" min="0" max="20" class="form-control" name="pass" placeholder="Passenger" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '" required>
-									<input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
+									<input type="date" class="form-control" name="departure" value="<?php echo $departure ?>" required placeholder=" " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Leave '">
+									<input type="number" min="0" max="20" class="form-control" name="pass" placeholder="<?php echo $pass ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '" required>
+                                    <label for="harga">Price</label>
+                                    <input type="number" class="form-control" name="total" placeholder="<?php echo $total ?>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passenger '" required>
+                                    </fieldset>
+                                    <input type="submit" name="submit" value="Submit" class="primary-btn text-uppercase">
 									<p>Please check your data before you submited it</p>
 								</form>
 							</div>
